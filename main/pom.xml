@@ -7,19 +7,50 @@
   <version>0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
+  <prerequisites>
+    <maven>3.0</maven>
+  </prerequisites>
+
   <name>main</name>
   <url>http://maven.apache.org</url>
 
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- Maven Compiler Plugin Version -->
     <compiler.version>3.1</compiler.version>
+    <!-- Java Versions -->
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+    <!-- ODL repository / plugin repository -->
+    <nexusproxy>http://nexus.opendaylight.org/content</nexusproxy>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <virgo.version>3.6.0.RELEASE</virgo.version>
+    <slf4j.version>1.7.2</slf4j.version>
+    <logback.version>1.0.9</logback.version>
+    <jersey.version>1.17</jersey.version>
+    <surefire.version>2.15</surefire.version>
+    <checkstyle.version>2.10</checkstyle.version>
+    <enforcer.version>1.3.1</enforcer.version>
   </properties>
 
   <repositories>
+    <!-- OpenDayLight Repo Mirror -->
     <repository>
-      <id>org.opendaylight.controller.snapshot</id>
-      <name>org.opendaylight.controller.snapshot</name>
-      <url>http://nexus.opendaylight.org/content/repositories/opendaylight.snapshot</url>
+      <id>opendaylight-mirror</id>
+      <name>opendaylight-mirror</name>
+      <url>${nexusproxy}/groups/public/</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+    </repository>
+    <!-- OpenDayLight Snapshot artifact -->
+    <repository>
+      <id>opendaylight-snapshot</id>
+      <name>opendaylight-snapshot</name>
+      <url>${nexusproxy}/repositories/opendaylight.snapshot/</url>
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
@@ -226,6 +257,91 @@
       <artifactId>org.apache.catalina.filters.CorsFilter</artifactId>
       <version>7.0.43-SNAPSHOT</version>
     </dependency>
+
+    <!-- equinox -->
+    <dependency>
+      <groupId>equinoxSDK381</groupId>
+      <artifactId>org.eclipse.osgi</artifactId>
+      <version>3.8.1.v20120830-144521</version>
+    </dependency>
+    <dependency>
+      <groupId>equinoxSDK381</groupId>
+      <artifactId>org.eclipse.equinox.console</artifactId>
+      <version>1.0.0.v20120522-1841</version>
+    </dependency>
+    <dependency>
+      <groupId>equinoxSDK381</groupId>
+      <artifactId>org.eclipse.equinox.launcher</artifactId>
+      <version>1.3.0.v20120522-1813</version>
+    </dependency>
+    <dependency>
+      <groupId>equinoxSDK381</groupId>
+      <artifactId>org.eclipse.equinox.ds</artifactId>
+      <version>1.4.0.v20120522-1841</version>
+    </dependency>
+    <dependency>
+      <groupId>equinoxSDK381</groupId>
+      <artifactId>org.eclipse.equinox.util</artifactId>
+      <version>1.0.400.v20120522-2049</version>
+    </dependency>
+    <dependency>
+      <groupId>equinoxSDK381</groupId>
+      <artifactId>org.eclipse.osgi.services</artifactId>
+      <version>3.3.100.v20120522-1822</version>
+    </dependency>
+
+    <!-- virgomirror -->
+    <dependency>
+      <groupId>virgomirror</groupId>
+      <artifactId>org.eclipse.jdt.core.compiler.batch</artifactId>
+      <version>3.8.0.I20120518-2145</version>
+    </dependency>
+
+    <!-- felix -->
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.apache.felix.fileinstall</artifactId>
+      <version>3.1.6</version>
+    </dependency>
+
+    <!-- gemini -->
+    <dependency>
+      <groupId>geminiweb</groupId>
+      <artifactId>org.eclipse.virgo.kernel.equinox.extensions</artifactId>
+      <version>${virgo.version}</version>
+    </dependency>
+
+    <!-- slf4j -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j.version}</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <!-- logback -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-core</artifactId>
+      <version>${logback.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>${logback.version}</version>
+    </dependency>
+
+    <!-- Jersey for JAXRS -->
+    <dependency>
+      <groupId>com.sun.jersey</groupId>
+      <artifactId>jersey-core</artifactId>
+      <version>${jersey.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.jersey</groupId>
+      <artifactId>jersey-server</artifactId>
+      <version>${jersey.version}</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -250,6 +366,68 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${surefire.version}</version>
+        <configuration>
+          <systemProperties>
+            <property>
+              <name>logback.configurationFile</name>
+              <value>logback.xml</value>
+            </property>
+          </systemProperties>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>${checkstyle.version}</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.opendaylight.controller</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>0.0.3-SNAPSHOT</version>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <phase>process-sources</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <failsOnError>true</failsOnError>
+          <configLocation>controller/checkstyle.xml</configLocation>
+          <consoleOutput>true</consoleOutput>
+          <includeTestSourceDirectory>true</includeTestSourceDirectory>
+          <sourceDirectory>${project.basedir}</sourceDirectory>
+          <includes>**\/*.java,**\/*.xml,**\/*.ini,**\/*.sh,**\/*.bat</includes>
+          <excludes>**\/target\/,**\/bin\/,**\/target-ide\/</excludes>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>${enforcer.version}</version>
+        <executions>
+          <execution>
+            <id>enforce-java</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireJavaVersion>
+                  <version>1.7.0</version>
+                </requireJavaVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
     <pluginManagement>
       <plugins>
@@ -258,8 +436,8 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>${compiler.version}</version>
           <configuration>
-            <source>1.7</source>
-            <target>1.7</target>
+            <source>${maven.compiler.source}</source>
+            <target>${maven.compiler.target}</target>
           </configuration>
         </plugin>
       </plugins>
