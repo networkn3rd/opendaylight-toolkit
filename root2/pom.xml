@@ -115,9 +115,23 @@
       <groupId>org.opendaylight.controller</groupId>
       <artifactId>switchmanager</artifactId>
     </dependency>
+    <!--
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>org.springframework.web</artifactId>
+    </dependency>
+    -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-websocket</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-mock</artifactId>
     </dependency>
     <dependency>
       <groupId>equinoxSDK381</groupId>
