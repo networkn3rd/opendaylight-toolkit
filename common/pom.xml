@@ -71,6 +71,13 @@
 
   <dependencyManagement>
     <dependencies>
+      <!-- opendaylight-web -->
+      <dependency>
+        <groupId>org.opendaylight.web</groupId>
+        <artifactId>web2</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      
       <!-- ODL Mirror -->
       <dependency>
         <groupId>org.opendaylight.controller</groupId>

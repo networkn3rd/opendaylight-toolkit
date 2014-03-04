@@ -42,6 +42,12 @@
   </properties>
 
   <dependencies>
+    <!-- opendaylight-web -->
+    <dependency>
+      <groupId>org.opendaylight.web</groupId>
+      <artifactId>web2</artifactId>
+    </dependency>
+
     <!-- ODL Mirror -->
     <dependency>
       <groupId>org.opendaylight.controller</groupId>
