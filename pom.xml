@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.opendaylight.web</groupId>
+  <groupId>org.opendaylight.phoenix</groupId>
   <artifactId>releasepom</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
@@ -11,7 +11,7 @@
     <maven>3.0</maven>
   </prerequisites>
 
-  <name>opendaylight-web</name>
+  <name>opendaylight-phoenix</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -20,7 +20,7 @@
 
   <modules>
     <module>main</module>
-    <module>root2</module>
+    <module>web</module>
   </modules>
 
   <build>

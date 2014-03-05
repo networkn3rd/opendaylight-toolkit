@@ -107,11 +107,11 @@
                 <url-pattern>/</url-pattern>
         </servlet-mapping>
 
-        <display-name>OpenDaylight UI Project</display-name>
-        <description>OpenDaylight UI Project</description>
+        <display-name>OpenDaylight Phoenix</display-name>
+        <description>OpenDaylight Phoenix</description>
 
         <listener>
-                <listener-class>org.opendaylight.web.web2.ControllerUISessionManager</listener-class>
+                <listener-class>org.opendaylight.phoenix.web.ControllerUISessionManager</listener-class>
         </listener>
 
         <session-config>
