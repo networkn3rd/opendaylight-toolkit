@@ -1,0 +1,20 @@
+#header {
+  height: 75px;
+  width: 100%;
+  display: block;
+  background: #ccc;
+}
+
+#brand {
+  color: #fff;
+  background: #888;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+  display: inline-block;
+  margin: 15px;
+}
+
+#brand:hover {
+  background: #aaa;
+}
