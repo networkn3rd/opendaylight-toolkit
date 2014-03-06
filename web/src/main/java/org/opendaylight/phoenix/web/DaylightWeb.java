@@ -8,6 +8,7 @@
 
 package org.opendaylight.phoenix.web;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import org.opendaylight.controller.usermanager.IUserManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/")
@@ -38,6 +40,33 @@ public class DaylightWeb {
                 .toNumber());
 
         return "main";
+    }
+
+    @RequestMapping(value = "web.json")
+    @ResponseBody
+    public Map<String, Map<String, Object>> bundles(HttpServletRequest request) {
+        Object[] instances = ServiceHelper.getGlobalInstances(
+                IDaylightWeb.class, this, null);
+        Map<String, Map<String, Object>> bundles = new HashMap<String, Map<String, Object>>();
+        if (instances == null) {
+            return bundles;
+        }
+        Map<String, Object> entry;
+        IDaylightWeb bundle;
+        String username = request.getUserPrincipal().getName();
+        IUserManager userManger = (IUserManager) ServiceHelper
+                .getGlobalInstance(IUserManager.class, this);
+        for (Object instance : instances) {
+            bundle = (IDaylightWeb) instance;
+            if (userManger != null
+                    && bundle.isAuthorized(userManger.getUserLevel(username))) {
+                entry = new HashMap<String, Object>();
+                entry.put("name", bundle.getWebName());
+                entry.put("order", bundle.getWebOrder());
+                bundles.put(bundle.getWebId(), entry);
+            }
+        }
+        return bundles;
     }
 
     @RequestMapping(value = "logout")

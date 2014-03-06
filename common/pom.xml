@@ -75,6 +75,11 @@
         <artifactId>web</artifactId>
         <version>0.0.1-SNAPSHOT</version>
       </dependency>
+      <dependency> <!-- TODO should not be hardcoded -->
+        <groupId>org.opendaylight.phoenix</groupId>
+        <artifactId>app</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
       
       <!-- ODL Mirror -->
       <dependency>

@@ -21,9 +21,10 @@
         <configuration>
           <instructions>
             <Import-Package>
-              org.opendaylight.phoenix.web
-              com.google.gson,
-              com.google.gson.reflect,
+              org.opendaylight.phoenix.web,
+              org.opendaylight.controller.sal.authorization,
+              org.opendaylight.controller.sal.core,
+              org.opendaylight.controller.sal.utils,
               javax.annotation,
               javax.naming,
               javax.servlet,
@@ -47,8 +48,6 @@
               org.apache.taglibs.standard.tag.rt.fmt,
               org.apache.taglibs.standard.tei,
               org.apache.taglibs.standard.tlv,
-              com.fasterxml.jackson.databind,
-              com.fasterxml.jackson.annotation,
               org.osgi.framework,
               org.slf4j,
               org.springframework.beans,
@@ -78,8 +77,8 @@
       <artifactId>web</artifactId>
     </dependency>
     <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-databind</artifactId>
+      <groupId>org.opendaylight.controller</groupId>
+      <artifactId>sal</artifactId>
     </dependency>
   </dependencies>
 </project>
