@@ -1,4 +1,4 @@
-package org.opendaylight.phoenix.app;
+package org.opendaylight.phoenix;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class App implements IDaylightWeb {
     private static final String WEB_NAME = "App";
-    private static final String WEB_ID = "app";
+    private static final String WEB_ID = "app2";
     private static final short WEB_ORDER = 1;
     private static final UserLevel AUTH_LEVEL = UserLevel.CONTAINERUSER;
 

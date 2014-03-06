@@ -716,6 +716,7 @@
           </systemProperties>
         </configuration>
       </plugin>
+      <!--
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
@@ -745,6 +746,7 @@
           <excludes>**\/target\/,**\/bin\/,**\/target-ide\/</excludes>
         </configuration>
       </plugin>
+      -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>

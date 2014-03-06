@@ -1,9 +1,6 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<web-${artifactId} xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-${artifactId}_3_0.xsd"
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
         version="3.0">
         <security-constraint>
                 <web-resource-collection>
@@ -61,13 +58,13 @@
                 <load-on-startup>1</load-on-startup>
         </servlet>
 
-        <servlet-m${artifactId}ing>
+        <servlet-mapping>
                 <servlet-name>App</servlet-name>
                 <url-pattern>/</url-pattern>
-        </servlet-m${artifactId}ing>
+        </servlet-mapping>
 
         <listener>
-                <listener-class>${groupId}.web.ControllerUISessionManager</listener-class>
+                <listener-class>org.opendaylight.phoenix.web.ControllerUISessionManager</listener-class>
         </listener>
         <session-config>
                 <cookie-config>
@@ -75,4 +72,4 @@
                 </cookie-config>
         </session-config>
 
-</web-${artifactId}>
+</web-app>

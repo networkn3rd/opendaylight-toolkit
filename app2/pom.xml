@@ -8,7 +8,9 @@
     <relativePath>../common</relativePath>
   </parent>
 
-  <artifactId>app</artifactId>
+  <artifactId>app2</artifactId>
+
+  <groupId>org.opendaylight.phoenix</groupId>
   <packaging>bundle</packaging>
 
   <build>
@@ -20,8 +22,7 @@
         <extensions>true</extensions>
         <configuration>
           <instructions>
-            <Import-Package>
-              org.opendaylight.phoenix.web,
+            <Import-Package>org.opendaylight.phoenix.web,
               org.opendaylight.controller.sal.authorization,
               org.opendaylight.controller.sal.core,
               org.opendaylight.controller.sal.utils,
@@ -61,17 +62,17 @@
               org.springframework.web.servlet.config,
               org.springframework.web.servlet.view,
               org.springframework.web.filter,
-              org.springframework.web.context
-            </Import-Package>
-            <Export-Package>
-            </Export-Package>
-            <Web-ContextPath>/app</Web-ContextPath>
+              org.springframework.web.context</Import-Package>
+            <Export-Package></Export-Package>
+            <Web-ContextPath>/app2</Web-ContextPath>
           </instructions>
           <manifestLocation>${project.basedir}/src/main/resources/META-INF</manifestLocation>
         </configuration>
       </plugin>
     </plugins>
   </build>
+
+  <version>1.0-SNAPSHOT</version>
   <dependencies>
     <dependency>
       <groupId>org.opendaylight.phoenix</groupId>

@@ -10,6 +10,7 @@ import org.opendaylight.controller.sal.authorization.UserLevel;
 import org.opendaylight.controller.sal.utils.ServiceHelper;
 import ${groupId}.web.IDaylightWeb;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -22,6 +23,11 @@ public class App implements IDaylightWeb {
 
     public App() {
         ServiceHelper.registerGlobalService(IDaylightWeb.class, this, null);
+    }
+
+    @RequestMapping(value = "")
+    public String index(Model model, HttpServletRequest request) {
+        return "main";
     }
 
     @Override
