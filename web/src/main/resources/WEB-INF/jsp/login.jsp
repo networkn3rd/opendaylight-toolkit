@@ -15,6 +15,10 @@
 
     <!-- scripts -->
     <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    
+    <!-- JS -->
+    <script src="/js/main.js"></script>
+
   </head>
   <body>
     <div id="header">
@@ -28,5 +32,6 @@
         <li><a href="#">4</a></li>
       </ul>
     </div>
+    <div id="canvas"></div>
   </body>
 </html>
