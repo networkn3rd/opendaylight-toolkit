@@ -2,12 +2,11 @@
   height: 75px;
   width: 100%;
   display: block;
-  background: #ccc;
+  background: #eee;
 }
 
 #brand {
-  color: #fff;
-  background: #888;
+  color: #888;
   text-decoration: none;
   padding: 10px;
   border-radius: 5px;
@@ -16,5 +15,5 @@
 }
 
 #brand:hover {
-  background: #aaa;
+  background: #ddd;
 }

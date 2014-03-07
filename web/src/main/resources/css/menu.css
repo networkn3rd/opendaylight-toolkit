@@ -1,19 +1,19 @@
-
 #menu {
   width: 100%;
   display: block;
-  background: #ddd;
   text-align: center;
 }
 
 #menu > ul > .pure-menu-selected {
-  background: #eee;
 }
 
 #menu > ul > .pure-menu-selected:hover {
-  background: transparent;
 }
 
 #menu > ul > .pure-menu-selected > a {
   cursor: default;
+}
+
+#menu > ul > .pure-menu-selected > a:hover {
+  background: transparent;
 }
