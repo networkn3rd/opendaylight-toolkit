@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.opendaylight.phoenix</groupId>
-  <artifactId>phoenix-app-web</artifactId>
+  <artifactId>phoenix-app-web-topology</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>maven-archetype</packaging>
 
-  <name>phoenix-app-web</name>
+  <name>phoenix-app-web-topology</name>
 
   <build>
     <extensions>
