@@ -104,16 +104,6 @@
       </dependency>
       <dependency>
         <groupId>org.opendaylight.controller</groupId>
-        <artifactId>bundlescanner.implementation</artifactId>
-        <version>0.4.2-SNAPSHOT</version>
-      </dependency>
-      <dependency>
-        <groupId>org.opendaylight.controller</groupId>
-        <artifactId>bundlescanner</artifactId>
-        <version>0.4.2-SNAPSHOT</version>
-      </dependency>
-      <dependency>
-        <groupId>org.opendaylight.controller</groupId>
         <artifactId>configuration</artifactId>
         <version>0.4.3-SNAPSHOT</version>
       </dependency>
@@ -266,6 +256,78 @@
         <groupId>org.opendaylight.controller.thirdparty</groupId>
         <artifactId>org.apache.catalina.filters.CorsFilter</artifactId>
         <version>7.0.43-SNAPSHOT</version>
+      </dependency>
+
+      <!-- ODL Northbound -->
+      <dependency>
+        <groupId>org.opendaylight.controller</groupId>
+        <artifactId>commons.northbound</artifactId>
+        <version>0.4.2-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.opendaylight.controller</groupId>
+        <artifactId>connectionmanager.northbound</artifactId>
+        <version>0.1.2-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.opendaylight.controller</groupId>
+        <artifactId>containermanager.northbound</artifactId>
+        <version>0.4.2-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.opendaylight.controller</groupId>
+        <artifactId>controllermanager.northbound</artifactId>
+        <version>0.0.2-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.opendaylight.controller</groupId>
+        <artifactId>flowprogrammer.northbound</artifactId>
+        <version>0.4.2-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.opendaylight.controller</groupId>
+        <artifactId>forwarding.staticrouting.northbound</artifactId>
+        <version>0.4.2-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.opendaylight.controller</groupId>
+        <artifactId>hosttracker.northbound</artifactId>
+        <version>0.4.2-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.opendaylight.controller</groupId>
+        <artifactId>statistics.northbound</artifactId>
+        <version>0.4.2-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.opendaylight.controller</groupId>
+        <artifactId>subnets.northbound</artifactId>
+        <version>0.4.2-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.opendaylight.controller</groupId>
+        <artifactId>switchmanager.northbound</artifactId>
+        <version>0.4.2-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.opendaylight.controller</groupId>
+        <artifactId>topology.northbound</artifactId>
+        <version>0.4.2-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.opendaylight.controller</groupId>
+        <artifactId>usermanager.northbound</artifactId>
+        <version>0.0.2-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.opendaylight.controller</groupId>
+        <artifactId>bundlescanner.implementation</artifactId>
+        <version>0.4.2-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.opendaylight.controller</groupId>
+        <artifactId>bundlescanner</artifactId>
+        <version>0.4.2-SNAPSHOT</version>
       </dependency>
 
       <!-- javax -->
