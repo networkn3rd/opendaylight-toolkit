@@ -249,6 +249,12 @@
       <artifactId>bundlescanner</artifactId>
     </dependency>
 
+    <!-- enunciate -->
+    <dependency>
+      <groupId>org.codehaus.enunciate</groupId>
+      <artifactId>enunciate-core-annotations</artifactId>
+    </dependency>
+
     <!-- javax -->
     <dependency>
       <groupId>equinoxSDK381</groupId>
