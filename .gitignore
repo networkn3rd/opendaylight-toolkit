@@ -1,5 +1,6 @@
 MANIFEST.MF
 .checkstyle
+ext/
 
 *.class
 
