@@ -4,8 +4,9 @@ define([
   // These are path alias that we configured in our bootstrap
   'jquery',     // lib/jquery/jquery
   'underscore', // lib/underscore/underscore
-  'backbone'    // lib/backbone/backbone
-], function($, _, Backbone){
+  'backbone',    // lib/backbone/backbone
+  'views/DeviceView'
+], function($, _, Backbone, DeviceView){
   var initialize = function() {
     console.log('init');
     // load apps into menu
@@ -33,9 +34,13 @@ define([
       $('#main').empty();
       $('#main').text('OpenDaylight Phoenix');
     });
+
+    // test backbone
+    new DeviceView().render();
   }
 
   return {
     initialize : initialize
   };
 });
+
