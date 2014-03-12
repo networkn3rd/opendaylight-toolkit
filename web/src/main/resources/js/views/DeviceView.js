@@ -5,7 +5,7 @@ define(
         'underscore',
         'collections/DevicesCollection',
         'models/DeviceModel',
-        'text!templates/device.html'
+        'ext/text/text!templates/device.html'
     ], function($, Backbone, _, DevicesCollection, DeviceModel, DeviceTemplate) {
 
     var DeviceView = Backbone.View.extend({
