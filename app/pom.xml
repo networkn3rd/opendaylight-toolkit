@@ -68,22 +68,8 @@
             <Web-ContextPath>/app</Web-ContextPath>
           </instructions>
           <manifestLocation>${project.basedir}/src/main/resources/META-INF</manifestLocation>
+          <buildDirectory>../main/target/main-osgipackage/opendaylight/plugins/</buildDirectory>
         </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>jar-to-main</id>
-            <configuration>
-              <outputDirectory>../main/target/main-osgipackage/opendaylight/plugins/</outputDirectory>
-            </configuration>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>
