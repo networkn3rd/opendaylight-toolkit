@@ -8,3 +8,10 @@ ext/
 *.jar
 *.war
 *.ear
+.metadata
+.project
+.settings
+.classpath
+.prefs
+target/
+
