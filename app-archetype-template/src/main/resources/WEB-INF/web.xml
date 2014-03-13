@@ -80,11 +80,11 @@
     <listener-class>org.opendaylight.phoenix.web.ControllerUISessionManager</listener-class>
   </listener>
 
-  <session-config>
+  <!-- <session-config> // needs further testing
     <cookie-config>
       <path>/</path>
     </cookie-config>
-  </session-config>
+  </session-config>-->
   
   <!-- northbound -->
   <servlet>

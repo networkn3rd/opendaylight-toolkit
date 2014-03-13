@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * This entire web class can be accessed via /web prefix as specified in web.xml
- *
- * @author Andrew Kim
  */
 @Controller
 @RequestMapping("/")

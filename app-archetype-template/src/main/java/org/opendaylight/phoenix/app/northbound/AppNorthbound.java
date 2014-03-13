@@ -24,7 +24,6 @@ import org.codehaus.enunciate.jaxrs.TypeHint;
  * <br>
  * HTTPS Authentication is disabled by default.
  */
-
 @Path("/")
 public class AppNorthbound {
     private String username;
