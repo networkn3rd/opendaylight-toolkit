@@ -5,8 +5,9 @@ define([
   'jquery',     // lib/jquery/jquery
   'underscore', // lib/underscore/underscore
   'backbone',    // lib/backbone/backbone
-  'views/DeviceView'
-], function($, _, Backbone, DeviceView){
+  'views/DeviceView',
+  'views/DevicePropertiesView'
+], function($, _, Backbone, DeviceView, DevicePropertiesView){
   var initialize = function() {
     console.log('init');
     // load apps into menu
@@ -36,7 +37,8 @@ define([
     });
 
     // test backbone
-    new DeviceView().render();
+    var deviceView = new DeviceView(); // this calls initialize which in turn calls render
+    var devicePropertiesView = new DevicePropertiesView();
   }
 
   return {
