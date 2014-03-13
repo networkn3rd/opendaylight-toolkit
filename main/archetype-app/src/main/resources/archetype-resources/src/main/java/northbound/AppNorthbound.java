@@ -1,7 +1,7 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-package ${package}.northbound;
+package ${package}.${artifactId}.northbound;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
