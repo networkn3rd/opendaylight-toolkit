@@ -1,4 +1,4 @@
-#set( $dollar = '$' )
+#set ( $dollar = '$' )
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
@@ -12,6 +12,8 @@
   <artifactId>${artifactId}</artifactId>
 
   <groupId>${groupId}</groupId>
+  <version>${version}</version>
+
   <packaging>bundle</packaging>
 
   <build>
@@ -36,31 +38,16 @@
               com.fasterxml.jackson.jaxrs.base,
               com.fasterxml.jackson.jaxrs.json,
               !org.codehaus.enunciate.jaxrs</Import-Package>
-            <Web-ContextPath>/northbound/${artifactId}</Web-ContextPath>
+            <Web-ContextPath>/northbound/northbound</Web-ContextPath>
             <Jaxrs-Resources>,${dollar}{classes;ANNOTATION;javax.ws.rs.Path}</Jaxrs-Resources>
           </instructions>
           <manifestLocation>${project.basedir}/src/main/resources/META-INF</manifestLocation>
+          <buildDirectory>../main/target/main-osgipackage/opendaylight/plugins/</buildDirectory> <!-- TODO use pom var -->
         </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>jar-to-main</id>
-            <configuration>
-              <outputDirectory>../main/target/main-osgipackage/opendaylight/plugins/</outputDirectory>
-            </configuration>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>
 
-  <version>${version}</version>
   <dependencies>
     <dependency>
       <groupId>org.codehaus.enunciate</groupId>
@@ -68,7 +55,7 @@
     </dependency>
     <dependency>
       <groupId>org.opendaylight.controller</groupId>
-      <artifactId>commons.northbound</artifactId>
+      <artifactId>commons.${rootArtifactId}</artifactId>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
