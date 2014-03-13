@@ -8,7 +8,6 @@ define(
         'views/DevicePropertiesView',
         'ext/text/text!templates/device.html'
     ], function($, Backbone, _, DevicesCollection, DeviceModel, DevicePropertiesView, DeviceTemplate) {
-
     var DeviceView = Backbone.View.extend({
         el: $("#main"),
         initialize: function() {
