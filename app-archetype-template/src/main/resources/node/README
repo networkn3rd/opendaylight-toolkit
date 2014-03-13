@@ -1,0 +1,3 @@
+`npm install connect`
+`node server.js`
+go to <your-ip>:8000
