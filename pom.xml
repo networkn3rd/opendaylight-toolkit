@@ -21,7 +21,6 @@
   <modules>
     <module>main</module>
     <module>web</module>
-    <module>app</module>
   </modules>
 
   <build>
