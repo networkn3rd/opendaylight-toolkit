@@ -64,7 +64,7 @@ define(
                 console.log("flow id to delete = " + id);
                 var flowModel = self.collection.get(id);
                 flowModel.setUrlRoot();
-                flowModel.destroy(null, {
+                flowModel.destroy({
                     dataType: "text",
                     success: function() {
                         console.log("delete succeeded!");
