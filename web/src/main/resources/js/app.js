@@ -5,9 +5,8 @@ define([
   'jquery',     // lib/jquery/jquery
   'underscore', // lib/underscore/underscore
   'backbone',    // lib/backbone/backbone
-  'views/DeviceView',
-  'views/DevicePropertiesView'
-], function($, _, Backbone, DeviceView, DevicePropertiesView){
+  'views/FlowsListView'
+], function($, _, Backbone, FlowsListView){
   var initialize = function() {
     console.log('init');
     // load apps into menu
@@ -36,9 +35,8 @@ define([
       $('#main').text('OpenDaylight Phoenix');
     });
 
-    // test backbone
-    var deviceView = new DeviceView(); // this calls initialize which in turn calls render
-    var devicePropertiesView = new DevicePropertiesView();
+    //var deviceView = new DeviceView(); // this calls initialize which in turn calls render
+    var flowsListView = new FlowsListView(); // this calls initialize which in turn calls render
   }
 
   return {
