@@ -7,6 +7,7 @@ static = require('./static');
 
 //routing.AddRoute('/simple', relay);
 routing.AddRoot('controller', relay);
+routing.AddRoot('web.json', relay);
 
 /* Server start */
 var server = http.createServer(function(req, res) {
