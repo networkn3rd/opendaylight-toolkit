@@ -1,7 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page import="java.net.URL"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
   <head>
     <meta charset="utf-8">
@@ -20,10 +16,6 @@
 
     <!-- scripts -->
     <script data-main="/app/js/main" src="/js/ext/requirejs/require.js"></script>
-    <!-- 
-    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-    <script src="/js/core.js"></script>
-    -->
   </head>
   <body>
     <h3>App</h3>

@@ -1,12 +1,9 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
   version="3.0">
   <servlet>
-    <servlet-name>JAXRSNorthbound</servlet-name>
+    <servlet-name>JAXRSnorthbound</servlet-name>
     <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
     <init-param>
       <param-name>javax.ws.rs.Application</param-name>
@@ -16,7 +13,7 @@
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>JAXRSNorthbound</servlet-name>
+    <servlet-name>JAXRSnorthbound</servlet-name>
     <url-pattern>/*</url-pattern>
   </servlet-mapping>
 
@@ -55,7 +52,7 @@
 
   <security-constraint>
     <web-resource-collection>
-      <web-resource-name>${artifactId}</web-resource-name>
+      <web-resource-name>northbound</web-resource-name>
       <url-pattern>/*</url-pattern>
       <http-method>POST</http-method>
       <http-method>GET</http-method>

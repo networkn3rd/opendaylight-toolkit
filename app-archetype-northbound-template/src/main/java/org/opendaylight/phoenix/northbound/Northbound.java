@@ -1,7 +1,4 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
-package ${package}.${artifactId}.northbound;
+package org.opendaylight.phoenix.northbound;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -15,10 +12,7 @@ import org.codehaus.enunciate.jaxrs.TypeHint;
 
 /**
  * Northbound REST API
- *
- * This entire web class can be accessed via /northbound prefix as specified in
- * web.xml
- *
+ * 
  * <br>
  * <br>
  * Authentication scheme : <b>HTTP Basic</b><br>
@@ -27,8 +21,10 @@ import org.codehaus.enunciate.jaxrs.TypeHint;
  * <br>
  * HTTPS Authentication is disabled by default.
  */
+
 @Path("/")
-public class AppNorthbound {
+public class Northbound {
+
     private String username;
 
     @Context
@@ -39,21 +35,21 @@ public class AppNorthbound {
     }
 
     /**
-     *
+     * 
      * Sample REST API call
-     *
+     * 
      * @return A response string
-     *
-     * <pre>
+     * 
+     *         <pre>
      * Example:
-     *
+     * 
      * Request URL:
-     * http://localhost:8080/${artifactId}/northbound/api
-     *
+     * http://localhost:8080/northbound/northbound/api
+     * 
      * Response body in XML:
      * &lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
      * Sample Northbound API
-     *
+     * 
      * Response body in JSON:
      * Sample Northbound API
      * </pre>
@@ -64,7 +60,8 @@ public class AppNorthbound {
     @TypeHint(String.class)
     @StatusCodes()
     public String getWidget() {
-        String result = "Sample Northbound API - ${artifactId}";
+        String result = "Sample Northbound API - northbound";
         return result;
     }
+
 }
