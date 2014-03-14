@@ -1,0 +1,47 @@
+<script type="text/template">
+    <div id="flowFormContainer"
+        style="margin-top: 20px; margin-left: 20px; padding: 10px;">
+        <fieldset>
+            <legend><%= flowAction %> Flow</legend>
+            <table>
+                <tr>
+                    <td><label>Flow Name:</label></td>
+                    <td><input type="text" id="flowName" name="flowName" value=""></td>
+                </tr>
+                <tr>
+                    <td><label>Node ID:</label></td>
+                    <td><input type="text" id="nodeId" name="nodeId" value=""></td>
+                </tr>
+                <tr>
+                    <td><label>Node Type:</label></td>
+                    <td><input type="text" id="nodeType" name="nodeType" value=""></td>
+                </tr>
+                <tr>
+                    <td><label>Ingress Port:</label></td>
+                    <td><input type="text" id="ingressPort" name="ingressPort"
+                        value=""></td>
+                </tr>
+                <tr>
+                    <td><label>Priority:</label></td>
+                    <td><input type="text" id="priority" name="priority" value=""></td>
+                </tr>
+                <tr>
+                    <td><label>Ether Type:</label></td>
+                    <td><input type="text" id="etherType" name="etherType" value=""></td>
+                </tr>
+                <tr>
+                    <td><label>Network Source:</label></td>
+                    <td><input type="text" id="nwSrc" name="nwSrc" value=""></td>
+                </tr>
+                <tr>
+                    <td><label>Actions:</label></td>
+                    <td><input type="text" id="actions" name="actions" value=""></td>
+                </tr>
+            </table>
+        </fieldset>
+        <div id="flowFormButtonsContainer">
+            <button id="saveFlowButton" class="pure-button button-success">Save</button>
+            <button id="cancelFlowButton" class="pure-button">Cancel</button>
+        </div>
+    </div>
+</script>
