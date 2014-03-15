@@ -5,9 +5,9 @@ require.config({
     "jquery": "/js/ext/jquery/dist/jquery.min",
     "underscore": "/js/ext/underscore/underscore",
     "backbone": "/js/ext/backbone/backbone",
-    "models": "/app/js/models", 			// app
-    "views": "/app/js/views", 				// app
-    "collections": "/app/js/collections" 	// app
+    "models": "/device/js/models", 			// app
+    "views": "/device/js/views", 				// app
+    "collections": "/device/js/collections" 	// app
   }
 });
 require([

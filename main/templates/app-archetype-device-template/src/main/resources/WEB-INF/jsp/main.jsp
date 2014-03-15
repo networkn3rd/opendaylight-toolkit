@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,10 +14,9 @@
     <!-- style app -->
 
     <!-- scripts -->
-    <script data-main="/app/js/main" src="/js/ext/requirejs/require.js"></script>
+    <script data-main="/device/js/main" src="/js/ext/requirejs/require.js"></script>
   </head>
   <body>
-    <h3>App</h3>
     <div id="main"></div>
   </body>
 </html>

@@ -79,7 +79,7 @@
             </Import-Package>
             <Export-Package>
             </Export-Package>
-            <Web-ContextPath>/app</Web-ContextPath>
+            <Web-ContextPath>/device</Web-ContextPath>
             <Jaxrs-Resources>,${classes;ANNOTATION;javax.ws.rs.Path}</Jaxrs-Resources>
           </instructions>
           <manifestLocation>${project.basedir}/src/main/resources/META-INF</manifestLocation>

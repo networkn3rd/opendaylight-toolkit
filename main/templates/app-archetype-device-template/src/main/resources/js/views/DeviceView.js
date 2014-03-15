@@ -3,10 +3,10 @@ define(
 	        'jquery',
 	        'backbone',
 	        'underscore',
-	        'collections/DevicesCollection',
-	        'models/DeviceModel',
-	        '/app/js/views/DevicePropertiesView.js',
-	        'ext/text/text!/app/js/templates/device.html'
+	        '/device/js/collections/DevicesCollection.js',
+	        '/device/js/models/DeviceModel.js',
+	        '/device/js/views/DevicePropertiesView.js',
+	        '/js/ext/text/text.js!/device/js/templates/device.html'
 	    ], function($, Backbone, _, DevicesCollection, DeviceModel, DevicePropertiesView, DeviceTemplate) {
 	    var DeviceView = Backbone.View.extend({
 	        el: $("#main"),
