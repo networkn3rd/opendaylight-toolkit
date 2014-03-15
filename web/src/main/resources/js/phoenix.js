@@ -15,10 +15,9 @@ define([
     .attr('id', 'phoenix-menu')
     .addClass('pure-menu pure-menu-open pure-menu-horizontal');
     var $ul = $(document.createElement('ul'));
-    var $li = $(document.createElement('li'))
-    .addClass('pure-menu-selected');
+    var $li = $(document.createElement('li'));
     var $a = $(document.createElement('a'))
-    .attr('href', '#')
+    .attr('href', '/')
     .append('Home');
     $li.append($a);
     $ul.append($li);
@@ -27,31 +26,31 @@ define([
     $overlay.append($brand).append($menu);
     $('body').prepend($overlay);
 
+    // determine which app we are in
+    var path = window.location.pathname;
+    path = path.split('/');
+    var current = undefined;
+    if (path.length > 1) {
+      if (path[1] === '') {
+        $li.addClass('pure-menu-selected');
+      } else {
+        current = path[1];
+      }
+    }
+
     // load apps into menu
     $.getJSON('/web.json', function(apps) {
-      console.log(apps);
       $.each(apps, function(key, app) {
         var $li = $(document.createElement('li'));
+        if (key === current) {
+          $li.addClass('pure-menu-selected');
+        }
         var $a = $(document.createElement('a'));
-        $a.append(app.name).attr('href', '#');
-        $a.click(function() {
-          $(this).closest('ul').find('li').removeClass('pure-menu-selected');
-          $(this).closest('li').addClass('pure-menu-selected');
-          //$('#main').load('/'+key); TODO
-        });
+        $a.append(app.name).attr('href', '/'+key+'/web/');
         $li.append($a);
 
         $('#phoenix-menu ul').append($li);
       });
-    });
-
-    $('#phoenix-menu .pure-menu-selected').click(function() {
-      $(this).closest('ul').find('li').removeClass('pure-menu-selected');
-      $(this).closest('li').addClass('pure-menu-selected');
-      /*
-      $('#main').empty();
-      $('#main').text('OpenDaylight Phoenix');
-      */
     });
   }
 
