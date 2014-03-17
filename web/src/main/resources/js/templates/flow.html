@@ -6,40 +6,46 @@
             <table>
                 <tr>
                     <td><label>Flow Name:</label></td>
-                    <td><input type="text" id="flowName" name="flowName" value=""></td>
+                    <td><input type="text" id="flowName" name="flowName" value="<%= flowModel.get('id') %>" <%= flowAction =='Edit' ? 'disabled' : '' %> ></td>
                 </tr>
                 <tr>
                     <td><label>Node ID:</label></td>
-                    <td><input type="text" id="nodeId" name="nodeId" value=""></td>
+                    <td>
+                        <select id="nodeId" name="nodeId" value="" <%= flowAction =='Edit' ? 'disabled' : '' %> >
+                            <% _.each(devices, function(device){ %>
+                            <option <%= flowModel.get('node').id == device.node.id ? 'selected' : '' %>  > <%= device.node.id %> </option>
+                            <% }); %>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td><label>Node Type:</label></td>
-                    <td><input type="text" id="nodeType" name="nodeType" value=""></td>
+                    <td><input type="text" id="nodeType" name="nodeType" value="<%= flowModel.get('node').type %>" <%= flowAction =='Edit' ? 'disabled' : '' %> ></td>
                 </tr>
                 <tr>
                     <td><label>Ingress Port:</label></td>
                     <td><input type="text" id="ingressPort" name="ingressPort"
-                        value=""></td>
+                        value="<%= flowModel.get('ingressPort') %>"></td>
                 </tr>
                 <tr>
                     <td><label>Priority:</label></td>
-                    <td><input type="text" id="priority" name="priority" value=""></td>
+                    <td><input type="text" id="priority" name="priority" value="<%= flowModel.get('priority') %>"></td>
                 </tr>
                 <tr>
                     <td><label>Ether Type:</label></td>
-                    <td><input type="text" id="etherType" name="etherType" value=""></td>
+                    <td><input type="text" id="etherType" name="etherType" value="<%= flowModel.get('etherType') %>"></td>
                 </tr>
                 <tr>
                     <td><label>Network Source:</label></td>
-                    <td><input type="text" id="nwSrc" name="nwSrc" value=""></td>
+                    <td><input type="text" id="nwSrc" name="nwSrc" value="<%= flowModel.get('nwSrc') %>"></td>
                 </tr>
                 <tr>
                     <td><label>Actions:</label></td>
-                    <td><input type="text" id="actions" name="actions" value=""></td>
+                    <td><input type="text" id="actions" name="actions" value="<%= flowModel.get('actions').toString() %>"></td>
                 </tr>
             </table>
         </fieldset>
-        <div id="flowFormButtonsContainer">
+        <div id="flowFormButtonsContainer" style="margin-top:10px;">
             <button id="saveFlowButton" class="pure-button button-success">Save</button>
             <button id="cancelFlowButton" class="pure-button">Cancel</button>
         </div>
