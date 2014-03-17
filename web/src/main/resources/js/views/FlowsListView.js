@@ -16,13 +16,11 @@ define(
             this.collection.url = "/controller/nb/v2/flowprogrammer/default";
             this.collection.fetch({
                 success: function(coll, response) {
-                    console.log("passed collection call to get flows", response);
                     self.render();
                 }
             });
         },
         render: function() {
-            console.log("FlowsView render called");
             var self = this;
             // populate collection with models
             var flowObjectsArr = self.collection.models[0].get('flowConfig');
@@ -53,15 +51,22 @@ define(
         handleFlowCrud: function(evt) {
             var self = this;
             var $button = $(evt.currentTarget);
-            console.log("flows crud button clicked - ", $button.attr("id"));
             if($button.attr("id") == "createFlowButton") {
                 self.flowView = self.flowView || new FlowView();
                 self.flowView.parentListView = self;
+                delete self.flowView.flowModel;
+                self.flowView.render();
+            } else if($button.attr("id") == "editFlowButton") {
+            	self.flowView = self.flowView || new FlowView();
+                self.flowView.parentListView = self;
+                // get data for selected model
+                var flowName = $("div#flowsContainer tbody tr.selectedrow").attr("data-flowName");
+                var flowModel = self.collection.get(flowName);
+                self.flowView.flowModel = flowModel;
                 self.flowView.render();
             } else {
                 // delete flow
                 var id = $("div#flowsContainer tbody tr.selectedrow").attr("data-flowName");
-                console.log("flow id to delete = " + id);
                 var flowModel = self.collection.get(id);
                 flowModel.setUrlRoot();
                 flowModel.destroy({

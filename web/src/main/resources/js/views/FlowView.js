@@ -4,18 +4,39 @@ define(
          'backbone',
          'underscore',
          'models/FlowsModel',
+         'collections/DevicesCollection',
          'ext/text/text!templates/flow.html'
-        ], function($, Backbone, _, FlowsModel, FlowTemplate) {
+        ], function($, Backbone, _, FlowsModel, DevicesCollection, FlowTemplate) {
     var FlowView = Backbone.View.extend({
         el: $("#main"),
         initialize: function() {
-            console.log("flowview inistialize called");
         },
         render: function() {
             // remove any existing form
             $("#flowFormContainer").remove();
-            var compiledTemplate = _.template(FlowTemplate, {"flowAction": "Create"});
-            $(this.el).append($(compiledTemplate).html());
+            var self = this;
+            var devicesCollection = new DevicesCollection();
+            devicesCollection.fetch({
+            	success: function(coll, response) {
+                    var flowModel = self.flowModel;
+                    var flowAction = "Edit";
+                    if(!flowModel) {
+                    	flowAction = "Create";
+                    	flowModel = {
+                        	get: function(arg1) {
+                        		return "";
+                        	}
+                        };
+                    }
+                    var compiledTemplate = _.template(FlowTemplate, 
+                    	{
+                    		"flowAction": flowAction,
+                    		"devices": response.nodeProperties,
+                    		"flowModel": flowModel
+                    	});
+                    $(self.el).append($(compiledTemplate).html());
+                }
+            });
         },
         events: {
             "click div#flowFormButtonsContainer button": "handleFlowFormButtons"
@@ -23,7 +44,6 @@ define(
         handleFlowFormButtons: function(evt) {
             var self = this;
             var $button = $(evt.currentTarget);
-            console.log("flow form button clicked - ", $button.attr("id"));
             if($button.attr("id") == "saveFlowButton") {
                 // create FlowModel and save it.
                 var flowModel = new FlowsModel({
@@ -49,7 +69,7 @@ define(
                     // the success callback wont get called
                     dataType: "text",
                     success: function(model, response) {
-                        console.log("created a flow!");
+                        console.log("Flow Created.");
                         $("#flowFormContainer").remove();
                         self.parentListView.updateView();
                     }
