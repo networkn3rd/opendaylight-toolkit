@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/")
 public class AppWeb implements IDaylightWeb {
-    private static final String WEB_NAME = "Devices App";
+    private static final String WEB_NAME = "${artifactId} App";
     private static final String WEB_ID = "${artifactId}";
     private static final short WEB_ORDER = 1;
     private static final UserLevel AUTH_LEVEL = UserLevel.CONTAINERUSER;
