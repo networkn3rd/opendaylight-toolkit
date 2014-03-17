@@ -1,0 +1,5 @@
+archetype-app : x
+archetype-add-device : w
+archetype-add-northbound: o
+archetype-app-web : x
+archetype-app-web-topology : x
