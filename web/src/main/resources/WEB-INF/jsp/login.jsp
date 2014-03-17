@@ -13,24 +13,24 @@ pageEncoding="UTF-8"%>
     
     <!-- style -->
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.4.2/pure-min.css"/>
-    <link rel="stylesheet" href="css/global.css"/>
-    <link rel="stylesheet" href="css/header.css"/>
-    <link rel="stylesheet" href="css/menu.css"/>
-    <link rel="stylesheet" href="css/core.css"/>
+    <link rel="stylesheet" href="/css/login.css"/>
     
     <!-- scripts -->
     <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
   </head>
   <body>
-    <div id="header">
-      <a href="#" id="brand">OpenDaylight</a>
+    <div id="header"></div>
+    <div id="container">
+      <form action="<c:url value='j_security_check' />" id="form" method="post" class="pure-form">
+        <fieldset>
+          <input type="text" name="j_username" placeholder="Username">
+          <input type="password" name="j_password" placeholder="Password">
+          <button class="pure-button pure-button-primary" type="submit">Log In</button>
+        </fieldset>
+      </form>
     </div>
-    <form action="<c:url value='j_security_check' />" id="form" method="post">
-      <fieldset>
-        <input type="text" name="j_username" placeholder="Username">
-        <input type="password" name="j_password" placeholder="Password">
-        <button class="pure-button pure-button-primary" type="submit">Log In</button>
-      </fieldset>
-    </form>
+    <script type="text/javascript">
+      $('input').first().focus();
+    </script>
   </body>
 </html>
