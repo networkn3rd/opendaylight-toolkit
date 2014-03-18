@@ -41,7 +41,11 @@ define(
                 });
                 self.collection.add(flowsModel);
             });
-            var compiledTemplate = _.template(FlowsTemplate, {flows: self.collection.models[0].get('flowConfig')});
+            var compiledTemplate = _.template(FlowsTemplate,
+                {
+            		flows: self.collection.models[0].get('flowConfig'),
+            		actionsMap: self.actionsMap
+            	});
             $(this.el).append($(compiledTemplate).html());
         },
         events: {
@@ -73,10 +77,12 @@ define(
                     dataType: "text",
                     success: function() {
                         console.log("delete succeeded!");
+                        $("#flowFormContainer").remove();
                         self.updateView();
                     },
                     error: function() {
                         console.log("delete error callback called");
+                        $("#flowFormContainer").remove();
                         self.updateView();
                     }
                 });
@@ -90,6 +96,28 @@ define(
         updateView: function() {
             $("#flowsContainer").remove();
             this.initialize();
+        },
+        /*
+         * temporary map of actions
+         */
+        actionsMap: {
+        	"DROP" : "Drop",
+            "LOOPBACK" : "Loopback",
+            "FLOOD" : "Flood",
+            "SW_PATH" : "Software Path",
+            "HW_PATH" : "Hardware Path",
+            "CONTROLLER" : "Controller",
+            "OUTPUT" : "Add Output Ports",
+            "SET_VLAN_ID" : "Set VLAN ID",
+            "SET_VLAN_PCP" : "Set VLAN Priority",
+            "POP_VLAN" : "Strip VLAN Header",
+            "SET_DL_SRC" : "Modify Datalayer Source Address",
+            "SET_DL_DST" : "Modify Datalayer Destination Address",
+            "SET_NW_SRC" : "Modify Network Source Address",
+            "SET_NW_DST" :"Modify Network Destination Address",
+            "SET_NW_TOS" : "Modify ToS Bits",
+            "SET_TP_SRC" : "Modify Transport Source Port",
+            "SET_TP_DST" : "Modify Transport Destination Port"
         }
     });
     return FlowsView;

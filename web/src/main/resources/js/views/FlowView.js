@@ -35,6 +35,10 @@ define(
                     		"flowModel": flowModel
                     	});
                     $(self.el).append($(compiledTemplate).html());
+                    // hack to set the actions value in case of edit
+                    if(flowAction == "Edit") {
+                    	$("#actions option[value='" + flowModel.get('actions') + "']")[0].selected =  true;
+                    }
                 }
             });
         },
@@ -52,7 +56,7 @@ define(
                     name: $("#flowName").val(),
                     node: {
                         id: $("#nodeId").val(),
-                        type: $("#nodeType").val(),
+                        type: "OF"
                     },
                     ingressPort: $("#ingressPort").val(),
                     priority: $("#priority").val(),
@@ -60,8 +64,7 @@ define(
                     nwSrc: $("#nwSrc").val(),
                     actions: [$("#actions").val()]
                 });
-                flowModel.urlRoot="/controller/nb/v2/flowprogrammer/default/node/";
-                flowModel.urlRoot += $("#nodeType").val() + "/";
+                flowModel.urlRoot="/controller/nb/v2/flowprogrammer/default/node/OF/";
                 flowModel.urlRoot += $("#nodeId").val() + "/";
                 flowModel.urlRoot += "staticFlow/";
                 flowModel.save(null, {
@@ -75,6 +78,9 @@ define(
                     }
                 });
 
+            } else {
+            	// cancel button
+            	$("#flowFormContainer").remove();
             }
         }
     });

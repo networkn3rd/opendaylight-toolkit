@@ -19,10 +19,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label>Node Type:</label></td>
-                    <td><input type="text" id="nodeType" name="nodeType" value="<%= flowModel.get('node').type %>" <%= flowAction =='Edit' ? 'disabled' : '' %> ></td>
-                </tr>
-                <tr>
                     <td><label>Ingress Port:</label></td>
                     <td><input type="text" id="ingressPort" name="ingressPort"
                         value="<%= flowModel.get('ingressPort') %>"></td>
@@ -41,7 +37,27 @@
                 </tr>
                 <tr>
                     <td><label>Actions:</label></td>
-                    <td><input type="text" id="actions" name="actions" value="<%= flowModel.get('actions').toString() %>"></td>
+                    <td>
+                        <select id="actions" name="actions">
+<option value="DROP">Drop</option>
+<option value="LOOPBACK">Loopback</option>
+<option value="FLOOD">Flood</option>
+<option value="SW_PATH">Software Path</option>
+<option value="HW_PATH">Hardware Path</option>
+<option value="CONTROLLER">Controller</option>
+<option value="OUTPUT">Add Output Ports</option>
+<option value="SET_VLAN_ID">Set VLAN ID</option>
+<option value="SET_VLAN_PCP">Set VLAN Priority</option>
+<option value="POP_VLAN">Strip VLAN Header</option>
+<option value="SET_DL_SRC">Modify Datalayer Source Address</option>
+<option value="SET_DL_DST">Modify Datalayer Destination Address</option>
+<option value="SET_NW_SRC">Modify Network Source Address</option>
+<option value="SET_NW_DST">Modify Network Destination Address</option>
+<option value="SET_NW_TOS">Modify ToS Bits</option>
+<option value="SET_TP_SRC">Modify Transport Source Port</option>
+<option value="SET_TP_DST">Modify Transport Destination Port</option>
+                        </select>
+                    </td>
                 </tr>
             </table>
         </fieldset>
