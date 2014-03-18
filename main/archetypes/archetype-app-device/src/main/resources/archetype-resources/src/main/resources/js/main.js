@@ -1,3 +1,4 @@
+#set( $symbol_dollar = '$' )
 // Filename: main.js
 
 require.config({
@@ -5,9 +6,9 @@ require.config({
     "jquery": "/js/ext/jquery/dist/jquery.min",
     "underscore": "/js/ext/underscore/underscore",
     "backbone": "/js/ext/backbone/backbone",
-    "models": "/device/js/models", 			// app
-    "views": "/device/js/views", 				// app
-    "collections": "/device/js/collections" 	// app
+    "models": "/${artifactId}/js/models", 			    // app
+    "views": "/${artifactId}/js/views", 				    // app
+    "collections": "/${artifactId}/js/collections" 	// app
   }
 });
 require([

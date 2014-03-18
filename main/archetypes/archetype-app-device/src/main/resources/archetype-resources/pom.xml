@@ -79,8 +79,8 @@
               com.fasterxml.jackson.jaxrs.json,
               !org.codehaus.enunciate.jaxrs</Import-Package>
             <Export-Package></Export-Package>
-            <Web-ContextPath>/device</Web-ContextPath>
-            <Jaxrs-Resources>,${dollar}{classes;ANNOTATION;javax.ws.rs.Path}</Jaxrs-Resources>
+            <Web-ContextPath>/${artifactId}</Web-ContextPath>
+            <Jaxrs-Resources>,${symbol_dollar}{classes;ANNOTATION;javax.ws.rs.Path}</Jaxrs-Resources>
           </instructions>
           <manifestLocation>${project.basedir}/src/main/resources/META-INF</manifestLocation>
           <buildDirectory>../main/target/main-osgipackage/opendaylight/plugins/</buildDirectory> <!-- TODO use pom var -->
