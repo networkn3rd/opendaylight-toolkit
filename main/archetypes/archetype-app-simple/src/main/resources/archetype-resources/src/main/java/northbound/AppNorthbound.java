@@ -2,18 +2,43 @@
 
 package ${package}.northbound;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.SecurityContext;
-
 import ${package}.ISimple;
+import ${package}.SimpleData;
 import org.codehaus.enunciate.jaxrs.StatusCodes;
 import org.codehaus.enunciate.jaxrs.TypeHint;
 import org.opendaylight.controller.sal.utils.ServiceHelper;
+
+import java.util.Map;
+import java.util.UUID;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
+import javax.ws.rs.core.UriInfo;
+
+import org.codehaus.enunciate.jaxrs.ResponseCode;
+import org.codehaus.enunciate.jaxrs.StatusCodes;
+import org.codehaus.enunciate.jaxrs.TypeHint;
+import org.opendaylight.controller.northbound.commons.RestMessages;
+import org.opendaylight.controller.northbound.commons.exception.BadRequestException;
+import org.opendaylight.controller.northbound.commons.exception.ResourceConflictException;
+import org.opendaylight.controller.northbound.commons.exception.ServiceUnavailableException;
+import org.opendaylight.controller.northbound.commons.exception.UnauthorizedException;
+import org.opendaylight.controller.northbound.commons.utils.NorthboundUtils;
+import org.opendaylight.controller.sal.authorization.Privilege;
+import org.opendaylight.controller.sal.core.Node;
+import org.opendaylight.controller.sal.utils.ServiceHelper;
+import org.opendaylight.controller.sal.utils.Status;
+import org.opendaylight.controller.sal.utils.StatusCode;
 
 /**
  * Northbound REST API
@@ -31,6 +56,8 @@ import org.opendaylight.controller.sal.utils.ServiceHelper;
  */
 @Path("/")
 public class AppNorthbound {
+    @Context
+    private UriInfo _uriInfo;
     private String username;
 
     @Context
@@ -38,6 +65,10 @@ public class AppNorthbound {
         if (context != null && context.getUserPrincipal() != null) {
             username = context.getUserPrincipal().getName();
         }
+    }
+
+    protected String getUserName() {
+        return username;
     }
 
     /**
@@ -63,11 +94,34 @@ public class AppNorthbound {
     @Path("/simple")
     @GET
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    @TypeHint(String.class)
     @StatusCodes()
-    public String getSimple() {
+    public Map<UUID, SimpleData> getData() {
+        if (!NorthboundUtils.isAuthorized(getUserName(), "default", Privilege.WRITE, this)) {
+            throw new UnauthorizedException("User is not authorized to perform this operation");
+        }
         ISimple simple = (ISimple) ServiceHelper.getGlobalInstance(ISimple.class, this);
-        return simple.getName();
+        if (simple == null) {
+            throw new ServiceUnavailableException("Simple Service " + RestMessages.SERVICEUNAVAILABLE.toString());
+        }
+
+        return simple.readData();
+    }
+
+    @Path("/simple/{uuid}")
+    @GET
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @TypeHint(SimpleData.class)
+    @StatusCodes()
+    public SimpleData getData(@PathParam("uuid") String uuid) {
+        if (!NorthboundUtils.isAuthorized(getUserName(), "default", Privilege.WRITE, this)) {
+            throw new UnauthorizedException("User is not authorized to perform this operation");
+        }
+        ISimple simple = (ISimple) ServiceHelper.getGlobalInstance(ISimple.class, this);
+        if (simple == null) {
+            throw new ServiceUnavailableException("Simple Service " + RestMessages.SERVICEUNAVAILABLE.toString());
+        }
+
+        return simple.readData(UUID.fromString(uuid));
     }
 
     /**
@@ -92,12 +146,27 @@ public class AppNorthbound {
      */
     @Path("/simple")
     @POST
-    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    @TypeHint(String.class)
-    @StatusCodes()
-    public String setSimple(@TypeHint(String.class) String simpleName) {
+    @StatusCodes({ @ResponseCode(code = 201, condition = "Row Inserted successfully"),
+        @ResponseCode(code = 400, condition = "Invalid data passed"),
+        @ResponseCode(code = 401, condition = "User not authorized to perform this operation")})
+    @Consumes({ MediaType.APPLICATION_JSON})
+    public Response createData(@TypeHint(SimpleData.class) SimpleData data) {
+        if (!NorthboundUtils.isAuthorized(getUserName(), "default", Privilege.WRITE, this)) {
+            throw new UnauthorizedException("User is not authorized to perform this operation");
+        }
         ISimple simple = (ISimple) ServiceHelper.getGlobalInstance(ISimple.class, this);
-        simple.setName(simpleName);
-        return simple.getName();
+        if (simple == null) {
+            throw new ServiceUnavailableException("Simple Service " + RestMessages.SERVICEUNAVAILABLE.toString());
+        }
+        
+        UUID uuid = simple.createData(data);
+        if (uuid == null) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+        return Response.status(Response.Status.CREATED)
+                .header("Location", String.format("%s/%s", _uriInfo.getAbsolutePath().toString(),
+                                                            uuid.toString()))
+                .entity(uuid.toString())
+                .build();
     }
 }
