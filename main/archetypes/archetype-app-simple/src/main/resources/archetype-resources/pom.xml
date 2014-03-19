@@ -70,6 +70,8 @@
               org.apache.felix.dm,
 
               org.opendaylight.controller.northbound.commons,
+              org.opendaylight.controller.northbound.commons.exception,
+              org.opendaylight.controller.northbound.commons.utils,
               com.sun.jersey.spi.container.servlet,
               com.fasterxml.jackson.annotation,
               javax.ws.rs,

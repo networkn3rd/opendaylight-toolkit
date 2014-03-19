@@ -2,8 +2,15 @@
 
 package ${package};
 
-public interface ISimple {
-    public String getName();
+import java.util.Map;
+import java.util.UUID;
 
-    public void setName(String name);
+import org.opendaylight.controller.sal.utils.Status;
+
+public interface ISimple {
+    public UUID createData(SimpleData datum);
+    public SimpleData readData(UUID uuid);
+    public Map<UUID, SimpleData> readData();
+    public Status updateData(UUID uuid, SimpleData data);
+    public Status deleteData(UUID uuid);
 }
