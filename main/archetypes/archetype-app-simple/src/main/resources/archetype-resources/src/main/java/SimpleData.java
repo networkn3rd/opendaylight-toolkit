@@ -12,18 +12,18 @@ public class SimpleData {
 	@XmlElement
 	private String foo;
 	@XmlElement
-	private int bar;
+	private String bar;
 
 	public String getFoo() {
 		return foo;
 	}
-	public int getBar() {
+	public String getBar() {
 		return bar;
 	}
 	public SimpleData() {
 		super();
 	}
-	public SimpleData(String foo, int bar) {
+	public SimpleData(String foo, String bar) {
 		super();
 		this.foo = foo;
 		this.bar = bar;
