@@ -1,0 +1,28 @@
+<script type="text/template" id="simpleContainer">
+  <div id="simpleDiv" style="margin-left:20px; float: left;">
+    <h3>Simple Application</h3>
+    <table id="simpleTable" class="pure-table pure-table-bordered">
+      <thead>
+        <tr>
+          <th>Simple Entry</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% _.each(simple, function(simpleton) { %>
+          <tr data-id="<%= simpleton.id %>">
+            <td><%= simpleton.id %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+    <fieldset>
+      <legend>Simple Form</legend>
+      <input type="text" id="simpleInput" />
+      <div id="simpleContainer">
+        <button id="simpleButton" class="pure-button button-success">Submit</button>
+        <button id="simpleRemoveButton" class="pure-button button-error">Remove</button>
+        <button class="pure-button">Cancel</button>
+      </div>
+    </fieldset>
+  </div>
+</script>
