@@ -146,9 +146,10 @@ public class AppNorthbound {
      */
     @Path("/simple")
     @POST
-    @StatusCodes({ @ResponseCode(code = 201, condition = "Row Inserted successfully"),
-        @ResponseCode(code = 400, condition = "Invalid data passed"),
-        @ResponseCode(code = 401, condition = "User not authorized to perform this operation")})
+    @StatusCodes({ @ResponseCode(code = 201, condition = "Data Inserted successfully"),
+        @ResponseCode(code = 401, condition = "User not authorized to perform this operation"),
+        @ResponseCode(code = 500, condition = "Error inserting data"),
+        @ResponseCode(code = 503, condition = "One or more of service is unavailable")})
     @Consumes({ MediaType.APPLICATION_JSON})
     public Response createData(@TypeHint(SimpleData.class) SimpleData data) {
         if (!NorthboundUtils.isAuthorized(getUserName(), "default", Privilege.WRITE, this)) {
@@ -161,7 +162,7 @@ public class AppNorthbound {
         
         UUID uuid = simple.createData(data);
         if (uuid == null) {
-            return Response.status(Response.Status.BAD_REQUEST).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
         return Response.status(Response.Status.CREATED)
                 .header("Location", String.format("%s/%s", _uriInfo.getAbsolutePath().toString(),
@@ -169,4 +170,91 @@ public class AppNorthbound {
                 .entity(uuid.toString())
                 .build();
     }
+
+    /**
+    *
+    * Sample PUT REST API call
+    *
+    * @return A response string
+    *
+    *         <pre>
+    * Example:
+    *
+    * Request URL:
+    * http://localhost:8080/app/northbound/api/{uuid}
+    *
+    * Response body in XML:
+    * &lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+    * Sample Northbound API
+    *
+    * Response body in JSON:
+    * Sample Northbound API
+    * </pre>
+    */
+   @Path("/simple/{uuid}")
+   @PUT
+   @StatusCodes({ @ResponseCode(code = 200, condition = "Data Updated successfully"),
+       @ResponseCode(code = 401, condition = "User not authorized to perform this operation"),
+       @ResponseCode(code = 500, condition = "Error updating data"),
+       @ResponseCode(code = 503, condition = "One or more of service is unavailable")})
+   @Consumes({ MediaType.APPLICATION_JSON})
+   public Response updateData(@PathParam("uuid") String uuid, @TypeHint(SimpleData.class) SimpleData data) {
+       if (!NorthboundUtils.isAuthorized(getUserName(), "default", Privilege.WRITE, this)) {
+           throw new UnauthorizedException("User is not authorized to perform this operation");
+       }
+       ISimple simple = (ISimple) ServiceHelper.getGlobalInstance(ISimple.class, this);
+       if (simple == null) {
+           throw new ServiceUnavailableException("Simple Service " + RestMessages.SERVICEUNAVAILABLE.toString());
+       }
+       
+       Status status = simple.updateData(UUID.fromString(uuid), data);
+       if (!status.isSuccess()) {
+           return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+       }
+       return Response.status(Response.Status.OK).build();
+   }
+
+   /**
+   *
+   * Sample Delete REST API call
+   *
+   * @return A response string
+   *
+   *         <pre>
+   * Example:
+   *
+   * Request URL:
+   * http://localhost:8080/app/northbound/api/{uuid}
+   *
+   * Response body in XML:
+   * &lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+   * Sample Northbound API
+   *
+   * Response body in JSON:
+   * Sample Northbound API
+   * </pre>
+   */
+  @Path("/simple/{uuid}")
+  @DELETE
+  @StatusCodes({ @ResponseCode(code = 200, condition = "Data Deleted successfully"),
+                 @ResponseCode(code = 401, condition = "User not authorized to perform this operation"),
+                 @ResponseCode(code = 500, condition = "Error deleting data"),
+                 @ResponseCode(code = 503, condition = "One or more of service is unavailable")})
+  @Consumes({ MediaType.APPLICATION_JSON})
+  public Response updateData(@PathParam("uuid") String uuid) {
+      if (!NorthboundUtils.isAuthorized(getUserName(), "default", Privilege.WRITE, this)) {
+          throw new UnauthorizedException("User is not authorized to perform this operation");
+      }
+      ISimple simple = (ISimple) ServiceHelper.getGlobalInstance(ISimple.class, this);
+      if (simple == null) {
+          throw new ServiceUnavailableException("Simple Service " + RestMessages.SERVICEUNAVAILABLE.toString());
+      }
+      
+      Status status = simple.deleteData(UUID.fromString(uuid));
+      if (!status.isSuccess()) {
+          return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+      }
+      return Response.status(Response.Status.OK).build();
+  }
+
 }
