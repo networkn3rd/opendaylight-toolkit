@@ -5,10 +5,10 @@ define([
   'jquery',     // lib/jquery/jquery
   'underscore', // lib/underscore/underscore
   'backbone',    // lib/backbone/backbone
-  'views/FlowsListView'
-], function($, _, Backbone, FlowsListView){
+  'views/HomeView'
+], function($, _, Backbone, HomeView){
   var initialize = function() {
-    var flowsListView = new FlowsListView(); // this calls initialize which in turn calls render
+    var view = new HomeView(); // this calls initialize which in turn calls render
   }
 
   return {
