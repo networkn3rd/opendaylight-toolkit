@@ -6,7 +6,7 @@ define(
     'underscore',
     '/${artifactId}/web/js/collections/SimpleCollection.js',
     '/${artifactId}/web/js/models/SimpleModel.js',
-    '/js/ext/text/text.js!/${artifactId}/js/templates/template.html'
+    '/js/ext/text/text.js!/${artifactId}/web/js/templates/simple.html'
     ], function($, Backbone, _, SimpleCollection, SimpleModel, Template) {
       var View = Backbone.View.extend({
         el: $("#main"),
