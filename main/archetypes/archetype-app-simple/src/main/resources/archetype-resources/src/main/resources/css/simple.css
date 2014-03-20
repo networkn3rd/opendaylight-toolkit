@@ -17,3 +17,23 @@
 .button-error {
   background: rgb(202, 60, 60); /* this is a maroon */
 }
+
+table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+fieldset {
+}
+
+fieldset > label {
+  display: block;
+}
+
+fieldset > input {
+  width: 100%;
+}
+
+#simpleContainer {
+  margin-top: 15px;
+}
