@@ -1,6 +1,6 @@
 <script type="text/template" id="simpleContainer">
   <div id="simpleDiv" style="margin-left:20px; float: left;">
-    <h3>Simple Application</h3>
+    <h3>${artifactId} Application</h3>
     <table id="simpleTable" class="pure-table pure-table-bordered">
       <thead>
         <tr>
@@ -10,17 +10,17 @@
         </tr>
       </thead>
       <tbody>
-        <% for (var uuid in simple) { %>
-          <tr data-id="<%= uuid %>">
-            <td><%= uuid %></td>
-            <td><%= simple[uuid].foo %></td>
-            <td><%= simple[uuid].bar %></td>
+        <% _.each(simple, function(simpleton) { %>
+          <tr data-id="<%= simpleton.id %>">
+            <td><%= simpleton.attributes.uuid %></td>
+            <td><%= simpleton.attributes.foo %></td>
+            <td><%= simpleton.attributes.bar %></td>
           </tr>
-        <% } %>
+        <% }); %>
       </tbody>
     </table>
     <fieldset>
-      <legend>Simple Form</legend>
+      <legend>${artifactId} Form</legend>
       <label for="simpleFooInput">Foo:</label>
       <input type="text" id="simpleFooInput" />
       <label for="simpleBarInput">Bar:</label>

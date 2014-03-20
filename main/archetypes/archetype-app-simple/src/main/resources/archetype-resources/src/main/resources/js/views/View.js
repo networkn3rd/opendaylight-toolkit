@@ -14,17 +14,17 @@ define(
           var self = this;
           this.collection = new SimpleCollection();
           this.collection.url = '/${artifactId}/northbound/simple';
-            this.collection.fetch({
-              success : function(call, response) {
-                self.render();
-              }
-            });
+          this.collection.fetch({
+            success : function(call, response) {
+              self.render();
+            }
+          });
         },
         render: function() {
           var that = this;
           var compiledTemplate = _.template(Template, 
           {
-            simple : that.collection.models[0].attributes
+            simple : that.collection.models
           });
           $(this.el).append($(compiledTemplate).html());
         },
@@ -50,8 +50,8 @@ define(
             });
           } else if ($button.attr('id') == 'simpleRemoveButton') {
             var id = $('#simpleTable tbody tr.selected').attr('data-id');
-            var simpleModel = self.collection.models[0].get(id);
-            simpleModel.urlRoot = '/Simple/northbound/simple';
+            var simpleModel = self.collection.get(id);
+            simpleModel.setUrlRoot();
             simpleModel.destroy({
               dataType: 'text',
               success: function() {
