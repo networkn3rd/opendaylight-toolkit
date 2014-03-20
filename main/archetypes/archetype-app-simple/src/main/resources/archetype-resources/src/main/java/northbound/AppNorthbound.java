@@ -8,6 +8,8 @@ import org.codehaus.enunciate.jaxrs.StatusCodes;
 import org.codehaus.enunciate.jaxrs.TypeHint;
 import org.opendaylight.controller.sal.utils.ServiceHelper;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -26,19 +28,12 @@ import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
 import org.codehaus.enunciate.jaxrs.ResponseCode;
-import org.codehaus.enunciate.jaxrs.StatusCodes;
-import org.codehaus.enunciate.jaxrs.TypeHint;
 import org.opendaylight.controller.northbound.commons.RestMessages;
-import org.opendaylight.controller.northbound.commons.exception.BadRequestException;
-import org.opendaylight.controller.northbound.commons.exception.ResourceConflictException;
 import org.opendaylight.controller.northbound.commons.exception.ServiceUnavailableException;
 import org.opendaylight.controller.northbound.commons.exception.UnauthorizedException;
 import org.opendaylight.controller.northbound.commons.utils.NorthboundUtils;
 import org.opendaylight.controller.sal.authorization.Privilege;
-import org.opendaylight.controller.sal.core.Node;
-import org.opendaylight.controller.sal.utils.ServiceHelper;
 import org.opendaylight.controller.sal.utils.Status;
-import org.opendaylight.controller.sal.utils.StatusCode;
 
 /**
  * Northbound REST API
@@ -95,7 +90,7 @@ public class AppNorthbound {
     @GET
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @StatusCodes()
-    public Map<UUID, SimpleData> getData() {
+    public List<SimpleData> getData() {
         if (!NorthboundUtils.isAuthorized(getUserName(), "default", Privilege.WRITE, this)) {
             throw new UnauthorizedException("User is not authorized to perform this operation");
         }
@@ -104,7 +99,11 @@ public class AppNorthbound {
             throw new ServiceUnavailableException("Simple Service " + RestMessages.SERVICEUNAVAILABLE.toString());
         }
 
-        return simple.readData();
+        Map<UUID, SimpleData> sDataMap = simple.readData();
+        if (sDataMap != null) {
+            return new ArrayList<SimpleData>(sDataMap.values());
+        }
+        return new ArrayList<SimpleData>();
     }
 
     @Path("/simple/{uuid}")
