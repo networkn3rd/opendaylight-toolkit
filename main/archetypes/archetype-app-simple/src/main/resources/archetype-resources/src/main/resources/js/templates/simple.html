@@ -9,8 +9,10 @@
       </thead>
       <tbody>
         <% _.each(simple, function(simpleton) { %>
-          <tr data-id="<%= simpleton.id %>">
-            <td><%= simpleton.id %></td>
+          <tr data-id="<%= simpleton.key %>">
+            <td><%= simpleton.key %></td>
+            <td><%= simpleton.value.foo %></td>
+            <td><%= simpleton.value.bar %></td>
           </tr>
         <% }); %>
       </tbody>

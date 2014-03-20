@@ -23,8 +23,18 @@ define(
         },
         render: function() {
           var that = this;
-          var compiledTemplate = _.template(Template, {simple: [{id:'first'}]}); // TODO
-            $(this.el).append($(compiledTemplate).html());
+          var templateArg = [];
+          _.map(that.collection.models[0].attributes, function(value, key) {
+            var obj = {};
+            obj.key = key;
+            obj.value = value;
+            templateArg.push(obj);
+          });
+          var compiledTemplate = _.template(Template, 
+          {
+            simple : templateArg
+          });
+          $(this.el).append($(compiledTemplate).html());
         },
         events : {
           'click #simpleContainer button' : 'handleSimpleButton',

@@ -2,7 +2,6 @@
 define(['backbone', 'underscore'], function(Backbone, _) {
   var SimpleModel = Backbone.Model.extend({
     defaults : {
-      id : 'simpleEntry'
     },
     initialize : function() {
     },
