@@ -13,26 +13,18 @@ define(
         initialize: function() {
           var self = this;
           this.collection = new SimpleCollection();
-          this.collection.url = '/${artifactId}/northbound/simple'; // TODO
+          this.collection.url = '/${artifactId}/northbound/simple';
             this.collection.fetch({
               success : function(call, response) {
-                console.log('passed collection call to get simple list', response);
                 self.render();
               }
             });
         },
         render: function() {
           var that = this;
-          var templateArg = [];
-          _.map(that.collection.models[0].attributes, function(value, key) {
-            var obj = {};
-            obj.key = key;
-            obj.value = value;
-            templateArg.push(obj);
-          });
           var compiledTemplate = _.template(Template, 
           {
-            simple : templateArg
+            simple : that.collection.models[0].attributes
           });
           $(this.el).append($(compiledTemplate).html());
         },
@@ -44,31 +36,30 @@ define(
           var self = this;
           var $button = $(evt.currentTarget);
           if ($button.attr('id') == 'simpleButton') {
-            console.log('Simple button pressed');
             var simpleModel = new SimpleModel({
-              id : $('#simpleInput').val()
+              foo : $('#simpleFooInput').val(),
+              bar : $('#simpleBarInput').val()
             });
             simpleModel.urlRoot = '/${artifactId}/northbound/simple';
             simpleModel.save(null, {
               dataType: 'text',
               success: function(model, response) {
-                console.log('submitted.');
+                $('#main').empty();
+                self.updateView();
               }
             });
           } else if ($button.attr('id') == 'simpleRemoveButton') {
             var id = $('#simpleTable tbody tr.selected').attr('data-id');
-            var simpleModel = self.collection.get(id);
-            simpleModel.setUrlRoot();
+            var simpleModel = self.collection.models[0].get(id);
+            simpleModel.urlRoot = '/Simple/northbound/simple';
             simpleModel.destroy({
               dataType: 'text',
               success: function() {
-                console.log('delete succeeded');
-                $('#simpleTable').remove();
+                $('#main').empty();
                 self.updateView();
               },
               error: function() {
-                console.log('delete error');
-                $('#simpleTable').remove();
+                $('#main').empty();
                 self.updateView();
               }
             });

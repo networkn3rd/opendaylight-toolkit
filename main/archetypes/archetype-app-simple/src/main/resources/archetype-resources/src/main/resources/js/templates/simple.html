@@ -4,22 +4,27 @@
     <table id="simpleTable" class="pure-table pure-table-bordered">
       <thead>
         <tr>
-          <th>Simple Entry</th>
+          <th>UUID</th>
+          <th>Foo</th>
+          <th>Bar</th>
         </tr>
       </thead>
       <tbody>
-        <% _.each(simple, function(simpleton) { %>
-          <tr data-id="<%= simpleton.key %>">
-            <td><%= simpleton.key %></td>
-            <td><%= simpleton.value.foo %></td>
-            <td><%= simpleton.value.bar %></td>
+        <% for (var uuid in simple) { %>
+          <tr data-id="<%= uuid %>">
+            <td><%= uuid %></td>
+            <td><%= simple[uuid].foo %></td>
+            <td><%= simple[uuid].bar %></td>
           </tr>
-        <% }); %>
+        <% } %>
       </tbody>
     </table>
     <fieldset>
       <legend>Simple Form</legend>
-      <input type="text" id="simpleInput" />
+      <label for="simpleFooInput">Foo:</label>
+      <input type="text" id="simpleFooInput" />
+      <label for="simpleBarInput">Bar:</label>
+      <input type="text" id="simpleBarInput" />
       <div id="simpleContainer">
         <button id="simpleButton" class="pure-button button-success">Submit</button>
         <button id="simpleRemoveButton" class="pure-button button-error">Remove</button>

@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="/${artifactId}/web/css/simple.css"/>
 
     <!-- scripts -->
-    <script data-main="/${artifactId}/js/main" src="/js/ext/requirejs/require.js"></script>
+    <script data-main="/${artifactId}/web/js/main" src="/js/ext/requirejs/require.js"></script>
   </head>
   <body>
     <div id="main"></div>
