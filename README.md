@@ -7,7 +7,7 @@
 Quick HowTo
 -----------
 
-1) Go to <code>main/archetypes/archetype-app-simple</code> and run <code>mvn clean install</code> to install the simple archetype
+1) Go to <code>main/archetypes/archetype-app-simple</code> and run <code>mvn install</code> to install the simple archetype
 
 2) Go to the project root directory and generate an app using the simple archetypes you just installed <code>mvn archetype:generate -DarchetypeCatalog=local</code>
 
@@ -25,17 +25,14 @@ Quick HowTo
 
 >Note: [tip for setting up Node.js and npm on Mac](http://shapeshed.com/setting-up-nodejs-and-npm-on-mac-osx/)
 
-4) **[important]** Install the base controller, within project root directory (where common, main, web are located) issue <code>mvn clean install</code>
+4) **[important]** Install the base controller, within project root directory (where common, main, web are located) issue <code>mvn install</code>
 >Note: This may take a while if you're on a new system 
 
-5) **[important]** Go into <code>common/</code> and issue <code>mvn clean install</code>
->Note: temporary workaround to bug https://github.com/opendaylight-toolkit/opendaylight-toolkit/issues/6 
+5) Then go into one of the apps you just generated and issue <code>mvn install</code> to install that bundle
 
-6) Then go into one of the apps you just generated and issue <code>mvn clean install</code> to install that bundle
+6) Then start the controller under <code>main/target/main-osgipackage/opendaylight</code> and <code>./run.sh -console</code>
 
-7) Then start the controller under <code>main/target/main-osgipackage/opendaylight</code> and <code>./run.sh -console</code>
-
-8) *[optional]* If you installed the bower components, you can access the toolkit web UI at <code>http://localhost:8080</code>
+7) *[optional]* If you installed the bower components, you can access the toolkit web UI at <code>http://localhost:8080</code>
 
 Troubleshooting
 ---------------
