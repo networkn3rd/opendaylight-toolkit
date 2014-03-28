@@ -3,7 +3,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.opendaylight.phoenix</groupId>
+    <groupId>org.opendaylight.toolkit</groupId>
     <artifactId>common</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <relativePath>../common</relativePath>
@@ -25,7 +25,8 @@
         <extensions>true</extensions>
         <configuration>
           <instructions>
-            <Import-Package>org.opendaylight.phoenix.web,
+            <Import-Package>
+              org.opendaylight.toolkit.web,
               org.opendaylight.controller.sal.authorization,
               org.opendaylight.controller.sal.core,
               org.opendaylight.controller.sal.utils,
@@ -81,7 +82,8 @@
               org.apache.catalina.filters,
               com.fasterxml.jackson.jaxrs.base,
               com.fasterxml.jackson.jaxrs.json,
-              !org.codehaus.enunciate.jaxrs</Import-Package>
+              !org.codehaus.enunciate.jaxrs
+            </Import-Package>
             <Export-Package></Export-Package>
             <Web-ContextPath>/${artifactId}</Web-ContextPath>
             <Jaxrs-Resources>,${symbol_dollar}{classes;ANNOTATION;javax.ws.rs.Path}</Jaxrs-Resources>
@@ -97,7 +99,7 @@
   </build>
   <dependencies>
     <dependency>
-      <groupId>org.opendaylight.phoenix</groupId>
+      <groupId>org.opendaylight.toolkit</groupId>
       <artifactId>web</artifactId>
     </dependency>
     <dependency>

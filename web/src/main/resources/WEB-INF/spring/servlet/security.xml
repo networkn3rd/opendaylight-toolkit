@@ -30,7 +30,7 @@
         </http>
 
         <beans:bean id="controllerFilter"
-                class="org.opendaylight.phoenix.web.ControllerCustomFilter" />
+                class="org.opendaylight.toolkit.web.ControllerCustomFilter" />
 
         <authentication-manager id="authenticationManager">
                 <authentication-provider ref="authenticationProviderWrapper" />
@@ -43,7 +43,7 @@
                         ref="authenticationFailureHandler" />
                 <beans:property name="authenticationSuccessHandler">
                         <beans:bean
-                                class="org.opendaylight.phoenix.web.ControllerAuthenticationSuccessHandler">
+                                class="org.opendaylight.toolkit.web.ControllerAuthenticationSuccessHandler">
                                 <beans:property name="targetUrlParameter" value="x-page-url" />
                                 <beans:property name="defaultTargetUrl" value="/" />
                         </beans:bean>
@@ -52,7 +52,7 @@
         </beans:bean>
 
         <beans:bean id="securityContextRepo"
-                class="org.opendaylight.phoenix.web.ControllerWebSecurityContextRepository" />
+                class="org.opendaylight.toolkit.web.ControllerWebSecurityContextRepository" />
 
         <beans:bean id="authenticationFailureHandler"
                 class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
@@ -61,17 +61,17 @@
         </beans:bean>
 
         <beans:bean id="loginUrlAuthenticationEntryPoint"
-                class="org.opendaylight.phoenix.web.ControllerLoginUrlAuthEntryPoint">
+                class="org.opendaylight.toolkit.web.ControllerLoginUrlAuthEntryPoint">
                 <beans:property name="loginFormUrl" value="/login" />
         </beans:bean>
 
         <beans:bean id="authenticationProviderWrapper"
-                class="org.opendaylight.phoenix.web.AuthenticationProviderWrapper" />
+                class="org.opendaylight.toolkit.web.AuthenticationProviderWrapper" />
 
     <!-- logout related -->
 
     <beans:bean id="logoutHandler"
-        class="org.opendaylight.phoenix.web.ControllerLogoutHandler" />
+        class="org.opendaylight.toolkit.web.ControllerLogoutHandler" />
 
     <beans:bean id="securityContextLogoutHandler"
         class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler" />
@@ -109,7 +109,7 @@
                 <beans:property name="cookieName" value="SDN-Controller" />
         </beans:bean>
 
-        <beans:bean id="userDetailsServiceRef" class="org.opendaylight.phoenix.web.ControllerUserDetailsService" />
+        <beans:bean id="userDetailsServiceRef" class="org.opendaylight.toolkit.web.ControllerUserDetailsService" />
 
 
         <beans:bean id="rememberMeAuthenticationProvider"

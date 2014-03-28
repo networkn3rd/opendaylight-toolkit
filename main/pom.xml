@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.opendaylight.phoenix</groupId>
+    <groupId>org.opendaylight.toolkit</groupId>
     <artifactId>common</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <relativePath>../common</relativePath>
@@ -39,9 +39,9 @@
   </properties>
 
   <dependencies>
-    <!-- opendaylight-phoenix -->
+    <!-- OpenDaylight Toolkit -->
     <dependency>
-      <groupId>org.opendaylight.phoenix</groupId>
+      <groupId>org.opendaylight.toolkit</groupId>
       <artifactId>web</artifactId>
     </dependency>
 
