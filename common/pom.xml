@@ -2,7 +2,13 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.opendaylight.toolkit</groupId>
+  <parent>
+    <groupId>org.opendaylight.toolkit</groupId>
+    <artifactId>common.opendaylight.full</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <relativePath>opendaylight/full/</relativePath>
+  </parent>
+
   <artifactId>common</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
@@ -82,6 +88,7 @@
       </dependency>
       
       <!-- ODL Mirror -->
+      <!--
       <dependency>
         <groupId>org.opendaylight.controller</groupId>
         <artifactId>arphandler</artifactId>
@@ -272,8 +279,10 @@
         <artifactId>org.apache.catalina.filters.CorsFilter</artifactId>
         <version>7.0.43-SNAPSHOT</version>
       </dependency>
+      -->
 
       <!-- ODL Northbound -->
+      <!--
       <dependency>
         <groupId>org.opendaylight.controller</groupId>
         <artifactId>commons.northbound</artifactId>
@@ -344,6 +353,7 @@
         <artifactId>bundlescanner</artifactId>
         <version>0.4.2-SNAPSHOT</version>
       </dependency>
+      -->
 
       <!-- enunciate -->
       <dependency>
